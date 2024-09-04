@@ -19,13 +19,13 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build Source/SCHQ_Blazor/SCHQ_Blazor.csproj --configuration Release
+        run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish Source/SCHQ_Blazor/SCHQ_Blazor.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -51,9 +51,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_62601834E10B49D0B72B096E6E62B33C }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C4E9CF2E63684E49AAE82116B78910CF }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FE83F3617EF84EA3814605D7E98FDAF7 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_AE5DC4F158404332B144FFBEAA04A518 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C13E4FCF4B964FB284A862EB969194DB }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7E13F89739D24F01BFC433B64DE1E66A }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
